@@ -13,15 +13,15 @@ class ${module_name}_test extends uvm_test;
     endfunction
 
     task run_phase(uvm_phase phase);
-        ${module_name}_sequence_item seq_item;
-        seq_item = ${module_name}_sequence_item::type_id::create("seq_item");
-        seq_item.phy_addr = 5'h1;
-        seq_item.reg_addr = 5'h2;
-        seq_item.data_in = 16'h1234;
+        ${module_name}_sequence seq;
 
-        env.driver.seq_item_port.start_item(seq_item);
-        env.driver.seq_item_port.finish_item(seq_item);
+        // Create the sequence
+        seq = ${module_name}_sequence::type_id::create("seq");
 
-        `uvm_info("${module_name}_TEST", $sformatf("Data out: %0h", seq_item.data_out), UVM_MEDIUM)
+        // Start the sequence
+        seq.start(env.driver.seq_item_port);
+
+        //`uvm_info("${module_name}_TEST", $sformatf("Data out: %0h", seq_item.data_out), UVM_MEDIUM)
     endtask
+
 endclass

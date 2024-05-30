@@ -1,4 +1,4 @@
-module mdio_master (
+module mdio_master(
     input wire clk,             // System clock
     input wire reset,           // System reset
     input wire start,           // Start signal for MDIO operation

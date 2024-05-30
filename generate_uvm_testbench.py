@@ -14,7 +14,7 @@ def parse_verilog_module(verilog_code):
     module_name = module_match.group(1)
     ports_str = module_match.group(2)
     ports = port_pattern.findall(ports_str)
-
+    print(ports)
     return module_name, ports
 
 
@@ -23,6 +23,7 @@ def generate_uvm_testbench(verilog_code):
 
     templates = {
         "sequence_item.svh": "./template/sequence_item.mako",
+        "sequence.svh": "./template/sequence.mako",
         "driver.svh": "./template/driver.mako",
         "monitor.svh": "./template/monitor.mako",
         "env.svh": "./template/env.mako",
