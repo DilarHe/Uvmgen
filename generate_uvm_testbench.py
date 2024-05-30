@@ -28,7 +28,9 @@ def generate_uvm_testbench(verilog_code):
         "monitor.svh": "./template/monitor.mako",
         "env.svh": "./template/env.mako",
         "test.svh": "./template/test.mako",
-        "tb_top.sv": "./template/top_module.mako"
+        "tb_top.sv": "./template/top_module.mako",
+        "virtual_if.svh": "./template/virtual_if.mako"
+#        "uvm_package.sv": "./template/uvm_package.mako"
     }
 
     for filename, template_path in templates.items():
