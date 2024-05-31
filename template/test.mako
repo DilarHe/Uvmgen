@@ -19,9 +19,13 @@ class ${module_name}_test extends uvm_test;
         seq = ${module_name}_sequence::type_id::create("seq");
 
         // Start the sequence
-        seq.start(env.driver.seq_item_port);
+        seq.start(env.agent.sequencer);
 
-        //`uvm_info("${module_name}_TEST", $sformatf("Data out: %0h", seq_item.data_out), UVM_MEDIUM)
+        // Wait for the sequence to complete
+        phase.raise_objection(this);
+        `uvm_info("TEST", "Starting sequence", UVM_LOW)
+        seq.start(env.agent.sequencer);
+        phase.drop_objection(this);
     endtask
 
 endclass
