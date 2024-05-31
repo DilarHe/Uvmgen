@@ -8,8 +8,12 @@ module tb_top;
 
     // Instantiate the DUT
     ${module_name} dut (
-% for direction, typ, name in ports:
+% for i, (direction, typ, width, name) in enumerate(ports):
+% if i < len(ports) - 1:
         .${name}(vif.${name}),
+% else:
+        .${name}(vif.${name})
+% endif
 % endfor
     );
 
@@ -24,11 +28,15 @@ module tb_top;
         rst_n = 0;
         #20 rst_n = 1;
     end
+    //  Generate Waveform
+    initial begin
+        $fsdbDumpfile("${module_name}_tb.fsdb");
+        $fsdbDumpvars(0,tb_top);
 
     // UVM configuration
     initial begin
-        uvm_config_db#(virtual ${module_name}_if)::set(null, "uvm_test_top.env.driver", "vif", vif);
-        uvm_config_db#(virtual ${module_name}_if)::set(null, "uvm_test_top.env.monitor", "vif", vif);
+        uvm_config_db#(virtual ${module_name}_if)::set(null, "uvm_test_top.env.agent.driver", "vif", vif);
+        uvm_config_db#(virtual ${module_name}_if)::set(null, "uvm_test_top.env.agent.monitor", "vif", vif);
         run_test("${module_name}_test");
     end
 endmodule

@@ -22,11 +22,11 @@ class ${module_name}_driver extends uvm_driver #(${module_name}_sequence_item);
     endtask
 
     task drive_transfer(${module_name}_sequence_item item);
-% for direction, typ, name in ports:
+% for direction, typ, width, name in ports:
 % if direction == "input":
         vif.${name} <= item.${name};
 % endif
 % endfor
-        @(posedge vif.clk);
+        //@(posedge vif.clk); //you must set clk of vif in tb_top
     endtask
 endclass

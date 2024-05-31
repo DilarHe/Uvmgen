@@ -1,12 +1,14 @@
 import re
 import argparse
 from mako.template import Template
-
+def remove_line_comments(verilog_code):
+    # Remove line comments that start with // and extend to the end of the line
+    return re.sub(r'//.*','',verilog_code)
 
 def parse_verilog_module(verilog_code):
+    verilog_code = remove_line_comments(verilog_code)
     module_pattern = re.compile(r'module\s+(\w+)\s*\(([^)]+)\);', re.DOTALL)
-    port_pattern = re.compile(r'\s*(input|output|inout)\s+([^;,\n]+)\s+(\w+)\s*[,;]*')
-
+    port_pattern = re.compile(r'\s*(input|output|inout)\s+(?:\s*(reg|wire|logic))?\s*(\[\d+:\d+\])?\s*(\w+)\s*[,;]*')
     module_match = module_pattern.search(verilog_code)
     if not module_match:
         raise ValueError("No module definition found in the provided code.")
@@ -14,8 +16,15 @@ def parse_verilog_module(verilog_code):
     module_name = module_match.group(1)
     ports_str = module_match.group(2)
     ports = port_pattern.findall(ports_str)
-    print(ports)
-    return module_name, ports
+
+    # Apply default values for typ and width
+    parsed_ports = []
+    for direction, typ, width, name in ports:
+        typ = typ if typ else 'logic'
+        width = width if width else ''
+        parsed_ports.append((direction, typ, width, name))
+
+    return module_name, parsed_ports
 
 
 def generate_uvm_testbench(verilog_code):

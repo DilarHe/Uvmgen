@@ -20,7 +20,7 @@ class ${module_name}_monitor extends uvm_monitor;
         forever begin
             item = ${module_name}_sequence_item::type_id::create("item");
             @(posedge vif.clk);
-% for direction, typ, name in ports:
+% for direction, typ, width, name in ports:
 % if direction == "output":
             item.${name} = vif.${name};
 % endif

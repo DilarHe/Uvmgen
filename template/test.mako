@@ -19,9 +19,6 @@ class ${module_name}_test extends uvm_test;
         seq = ${module_name}_sequence::type_id::create("seq");
 
         // Start the sequence
-        seq.start(env.agent.sequencer);
-
-        // Wait for the sequence to complete
         phase.raise_objection(this);
         `uvm_info("TEST", "Starting sequence", UVM_LOW)
         seq.start(env.agent.sequencer);

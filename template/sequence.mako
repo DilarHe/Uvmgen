@@ -12,7 +12,7 @@ class ${module_name}_sequence extends uvm_sequence #(${module_name}_sequence_ite
         item = ${module_name}_sequence_item::type_id::create("item");
 
         // Configure the sequence item
-% for direction, typ, name in ports:
+% for direction, typ, width, name in ports:
 % if direction == "input":
         item.${name} = 'h0;
 % endif

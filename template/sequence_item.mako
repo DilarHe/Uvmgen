@@ -1,5 +1,5 @@
 class ${module_name}_sequence_item extends uvm_sequence_item;
-% for direction, typ, name in ports:
+% for direction, typ, width, name in ports:
     rand logic ${name};
 % endfor
 
@@ -11,7 +11,7 @@ class ${module_name}_sequence_item extends uvm_sequence_item;
 
     function void do_print(uvm_printer printer);
         super.do_print(printer);
-% for direction, typ, name in ports:
+% for direction, typ, width, name in ports:
         printer.print_field("${name}", ${name}, $bits(${name}));
 % endfor
     endfunction
