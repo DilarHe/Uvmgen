@@ -1,5 +1,5 @@
 // Define virtual interface for mdio_master
-interface mdio_master_if(input clk, input rstn);
+interface mdio_master_if（input clk, input rstn);
     // Define interface signals
     wire  clk;
     wire  reset;

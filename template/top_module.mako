@@ -32,6 +32,7 @@ module tb_top;
     initial begin
         $fsdbDumpfile("${module_name}_tb.fsdb");
         $fsdbDumpvars(0,tb_top);
+    end
 
     // UVM configuration
     initial begin

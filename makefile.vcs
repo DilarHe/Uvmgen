@@ -1,0 +1,39 @@
+export IP_PATH = "TO DO: FILL IN THE IP PATH"
+export TB_PATH = "TO DO: FILL IN THE TB PATH"
+IP_FILELIST = "TO DO: FILL IN THE IP FILELIST"
+VERDI_HOME = "TO DO: FILL IN THE VERDI PATH"
+UVM_HOME = "TO DO: FILL IN THE UVM PATH"
+UVM_VERBOSITY = UVM_HIGH
+TEST = "TO DO: test name of test.svh"
+TEST_SEQ = "TO DO: sequence name of sequence.svh"
+
+VCS = vcs   -sverilog   \
+            -timescale=1ns/1ns  \
+            +nospecify  \
+            -debug_access+all   \
+            -ntb_opts uvm-1.2   \ //same as defined in UVM_HOME
+            -P $(VERDI_HOME)/share/PLI/VCS/linux64/novas.tab  \
+            $(VERDI_HOME)/share/PLI/VCS/linux64/pli.a
+
+SIMV  = ./simv  +UVM_VERBOSITY=$(UVM_VERBOSITY) \
+                +nospecify  \
+                +UVM_TESTNAME=$(TEST)  \
+                +UVM_TEST_SEQ=$(TEST_SEQ)   \
+                +UVM_TR_RECORD  \
+                +UVM_LOG_RECORD \
+                +verbose=1  \
+                +ntb_random_seed=244    \
+                -l vcs.log
+run_sim: comp run
+
+comp:
+    $(VCS) -f $(IP_FILELIST) -f $(TB_PATH)/tb_filelist.f &
+
+run:
+    $(SIMV)
+
+debug:
+    verdi -sv -f $(IP_FILELIST) -f $(TB_PATH)/tb_filelist.f &
+
+clean:
+    rm -rf coverage.vdb csrc DVEfiles inter.vpd  simv simv.daidir ucli.key vc_hdrs.h vcs.log .inter .vpd .uvm

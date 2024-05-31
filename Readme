@@ -1,0 +1,11 @@
+This project is used to generate uvm framework for simulation
+
+######  what you should do ######
+update "TO DO" information in makefile.vcs
+
+######  how to generate uvm files #####
+python3 generate_uvm_testbench.py -file "module file path"
+
+######  how to do simulation ######
+make -f makefile.vcs [option]
+Note: [option] can be ignored, or comp, run, debug, clean, .etc
