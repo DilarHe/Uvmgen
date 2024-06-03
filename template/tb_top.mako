@@ -5,7 +5,7 @@ module tb_top;
     bit clk;
     bit rst_n;
     //if necessary, you can use  ${module_name}_if vif(clk, rst_n);
-    ${module_name}_if vif();
+    ${module_name}_if vif(clk, rst_n);
 
     // Instantiate the DUT
     ${module_name} dut (

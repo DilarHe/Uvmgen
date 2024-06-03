@@ -10,6 +10,7 @@ package ${module_name}_pkg;
     `include "scoreboard.svh"
     `include "driver.svh"
     `include "monitor.svh"
+    `include "agent.svh"
     `include "env.svh"
     `include "test.svh"
 

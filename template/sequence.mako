@@ -17,8 +17,8 @@ class ${module_name}_sequence extends uvm_sequence #(${module_name}_sequence_ite
             // Print Info
             `uvm_info("SEQ", "Item Generated", UVM_MEDIUM)
             // Start item
-            start_item(req);
-            finish_item(req);
+            start_item(item);
+            finish_item(item);
         end
 
     // following code allow configuring item

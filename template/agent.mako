@@ -17,7 +17,6 @@ class ${module_name}_agent extends uvm_agent;
     endfunction
 
     function void connect_phase(uvm_phase phase);
-        supper.connect_phase(phase);
         driver.seq_item_port.connect(sequencer.seq_item_export);
         driver.ap.connect(monitor.ap);
     endfunction
