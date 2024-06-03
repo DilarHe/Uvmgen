@@ -7,6 +7,7 @@ package ${module_name}_pkg;
     `include "sequence_item.svh"
     `include "sequence.svh"
     `include "sequencer.svh"
+    `include "scoreboard.svh"
     `include "driver.svh"
     `include "monitor.svh"
     `include "env.svh"
