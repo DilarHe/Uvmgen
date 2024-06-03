@@ -8,6 +8,21 @@ class ${module_name}_sequence extends uvm_sequence #(${module_name}_sequence_ite
     virtual task body();
         ${module_name}_sequence_item item;
 
+        // Generate Item by randomization
+        repeat(10) begin
+            // Create a sequence item
+            item = ${module_name}_sequence_item::type_id::create("item");
+            // Randomize item
+            assert(item.randomize()) else `uvm_error("RANDOMIZE", "Randomization failed")
+            // Print Info
+            `uvm_info("SEQ", "Item Generated", UVM_MEDIUM)
+            // Start item
+            start_item(req);
+            finish_item(req);
+        end
+
+    // following code allow configuring item
+    /*
         // Create a sequence item
         item = ${module_name}_sequence_item::type_id::create("item");
 
@@ -23,5 +38,6 @@ class ${module_name}_sequence extends uvm_sequence #(${module_name}_sequence_ite
 
         // Finish the sequence item
         finish_item(item);
+    */
     endtask
 endclass

@@ -31,7 +31,6 @@ def parse_verilog_module(verilog_code):
 
 def generate_uvm_testbench(verilog_code, template):
     module_name, ports = parse_verilog_module(verilog_code)
-    print(template.split(".")[0])
     if template:
         templates = {template: "./template/"+template.split('.')[0]+".mako"}
     else:
@@ -42,7 +41,7 @@ def generate_uvm_testbench(verilog_code, template):
             "monitor.svh": "./template/monitor.mako",
             "env.svh": "./template/env.mako",
             "test.svh": "./template/test.mako",
-            "tb_top.sv": "./template/top_module.mako",
+            "tb_top.sv": "./template/tb_top.mako",
             "virtual_if.svh": "./template/virtual_if.mako",
             "uvm_package.sv": "./template/uvm_package.mako",
             "agent.svh": "./template/agent.mako",

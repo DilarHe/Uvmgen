@@ -5,7 +5,7 @@ module mdio_master(
     input wire [4:0] phy_addr,  // PHY address
     input wire [4:0] reg_addr,  // Register address
     input wire [15:0] data_in,  // Data to be written
-    input wire write,           // Write enable signal
+    input    write,           // Write enable signal
     output reg [15:0] data_out, // Data read from PHY
     output reg ready,           // Ready signal
     output reg mdio,            // MDIO data line

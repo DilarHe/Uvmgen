@@ -7,7 +7,7 @@ interface mdio_master_if（input clk, input rstn);
     wire [4:0] phy_addr;
     wire [4:0] reg_addr;
     wire [15:0] data_in;
-    wire  write;
+    logic  write;
     reg [15:0] data_out;
     reg  ready;
     reg  mdio;
