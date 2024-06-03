@@ -5,6 +5,7 @@ update "TO DO" information in makefile.vcs
 
 ######  how to generate uvm files #####
 python3 generate_uvm_testbench.py -file "module file path"
+after this, you can change your uvm files according to the requirements.
 
 ######  how to do simulation ######
 make -f makefile.vcs [option]
